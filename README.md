@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # DatatableBundle
 
 Symfony2 Datatable For Doctrine Entities.
@@ -334,7 +335,4 @@ Before installing DatatableBundle you need to have a working installation of Sym
     The result should looks like that:
 
     <div style="text-align:center"><img alt="Screenshot" src="https://github.com/stwe/DatatableBundle/raw/master/Resources/screenshots/screenshot2.jpg"></div>
-
-
-
 
