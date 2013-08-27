@@ -1,0 +1,27 @@
+services:
+
+    dutchbridge.serializer.method:
+        class: Symfony\Component\Serializer\Normalizer\GetSetMethodNormalizer
+
+    dutchbridge.serializer.encoder.json:
+        class: Symfony\Component\Serializer\Encoder\JsonEncoder
+
+    dutchbridge.serializer:
+        class: Symfony\Component\Serializer\Serializer
+        arguments:
+            - [@dutchbridge.serializer.method]
+            - [@dutchbridge.serializer.encoder.json]
+
+    dutchbridge.datatable.factory:
+        class: DutchBridge\DatatableBundle\Factory\DatatableFactory
+        arguments: [@twig]
+
+    dutchbridge.datatable.twig.extension:
+        class: DutchBridge\DatatableBundle\Twig\DatatableTwigExtension
+        tags:
+            - { name: twig.extension }
+
+    dutchbridge.datatable:
+        class: DutchBridge\DatatableBundle\Manager\DatatableDataManager
+        scope: request
+        arguments: [@doctrine, @request, @dutchbridge.serializer, @logger]

@@ -1,0 +1,27 @@
+{
+    "name": "sg/datatablesbundle",
+    "description": "Symfony2 Datatable For Doctrine Entities",
+    "keywords": ["Symfony2", "Datatable", "Grid", "Table"],
+    "homepage": "https://github.com/stwe/DatatableBundle",
+    "license": "MIT",
+    "type": "symfony-bundle",
+    "authors": [
+        {
+            "name": "stwe"
+        }
+    ],
+    "require": {
+        "php": ">=5.3.2",
+        "symfony/framework-bundle": "~2.1"
+    },
+    "suggest": {
+        "twitter/bootstrap": "Add Bootstrap Css support, suggest  v2.3.2"
+    },
+    "target-dir": "Sg/DatatableBundle",
+    "autoload": {
+        "psr-0": {
+            "DutchBridge\\DatatableBundle": ""
+        }
+    }
+}
+
