@@ -1,5 +1,5 @@
 {
-    "name": "dutchbridge/datatablesbundle",
+    "name": "dutchbridge/datatablebundle",
     "description": "Symfony2 Datatable For Doctrine Entities",
     "keywords": ["Symfony2", "Datatable", "Grid", "Table"],
     "homepage": "https://github.com/dutchbridge/DatatableBundle",
