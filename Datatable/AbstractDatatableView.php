@@ -336,4 +336,16 @@ abstract class AbstractDatatableView
     {
         return $this->template;
     }
+
+    /**
+     * hack for jms transbundle
+     *
+     * @param string $value value
+     *
+     * @return string same value
+     */
+    public function trans($value)
+    {
+        return $value;
+    }
 }
