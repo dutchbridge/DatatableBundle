@@ -1,15 +1,17 @@
-<<<<<<< HEAD
 # DatatableBundle
 
 Symfony2 Datatable For Doctrine Entities.
 
 Status: not yet ready, hard-development
 
+# I will update the documentation ASAP
+
+
 Before installing DatatableBundle you need to have a working installation of Symfony2.
 
 # Screenshot
 
-<div style="text-align:center"><img alt="Screenshot" src="https://github.com/stwe/DatatableBundle/raw/master/Resources/screenshots/screenshot1.jpg"></div>
+<div style="text-align:center"><img alt="Screenshot" src=""></div>
 
 # Installation
 
