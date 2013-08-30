@@ -27,7 +27,7 @@
                 var defaults = {
                     "bProcessing": true,
                     "bServerSide": true,
-                    "sAjaxSource": "{{ path(sAjaxSource) }}",
+                    "sAjaxSource": "{{ path(sAjaxSource, routeParameters) }}",
                     "sDom": "<'row'<'{{ sDomOptions.sDomLength }}'l><'{{ sDomOptions.sDomFilter }}'f>r>t<'row'<'{{ sDomOptions.sDomInfo }}'i><'{{ sDomOptions.sDomPagination }}'p>>",
                     "sPaginationType": "bootstrap",
                     "aLengthMenu": [[10, 25, 50, 100, -1], [10, 25, 50, 100, "All"]],
@@ -177,6 +177,16 @@
                 } else {
                     return "<i class='icon-remove'></i>";
                 }
+            }
+
+            function render_date(data, type, full) {
+                if (type != "display")
+                    return data;
+                if (data && data.timestamp) {
+                    return '<span data-livestamp="'+data.timestamp+'"></span>';
+                }
+
+               return null;
             }
 
             function render_plus_icon(data, type, full) {

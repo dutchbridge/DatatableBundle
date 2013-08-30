@@ -14,7 +14,7 @@ services:
 
     dutchbridge.datatable.factory:
         class: DutchBridge\DatatableBundle\Factory\DatatableFactory
-        arguments: [@twig]
+        arguments: [@templating]
 
     dutchbridge.datatable.twig.extension:
         class: DutchBridge\DatatableBundle\Twig\DatatableTwigExtension

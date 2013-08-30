@@ -2,7 +2,7 @@
 
 namespace DutchBridge\DatatableBundle\Datatable;
 
-use Twig_Environment as Twig;
+use Symfony\Bridge\Twig\TwigEngine as Twig;
 
 /**
  * Class AbstractDatatableView
@@ -16,14 +16,14 @@ abstract class AbstractDatatableView
      *
      * @var Twig
      */
-    private $twig;
+    protected $twig;
 
     /**
      * The Twig template.
      *
      * @var string
      */
-    private $template;
+    protected $template;
 
     /**
      * The css sDom parameter for:
@@ -34,49 +34,56 @@ abstract class AbstractDatatableView
      *
      * @var array
      */
-    private $sDomOptions;
+    protected $sDomOptions;
 
     /**
      * The table id selector.
      *
      * @var string
      */
-    private $tableId;
+    protected $tableId;
 
     /**
      * Content for the table header cells.
      *
      * @var array
      */
-    private $tableHeaders;
+    protected $tableHeaders;
 
     /**
      * The aoColumns fields.
      *
      * @var array
      */
-    private $fields;
+    protected $fields;
 
     /**
      * The aoColumns fields.
      *
      * @var array
      */
-    private $action;
+    protected $action;
 
     /**
      * The sAjaxSource path.
      *
      * @var string
      */
-    private $sAjaxSource;
+    protected $sAjaxSource;
+
+    /**
+     * Array for route parameters.
+     *
+     * @var array
+     */
+    protected $routeParameters;
 
     /**
      * Array for custom options.
      *
      * @var array
      */
-    private $customizeOptions;
+    protected $customizeOptions;
 
     //-------------------------------------------------
     // Ctor
@@ -107,6 +114,7 @@ abstract class AbstractDatatableView
         $this->editPath         = '';
         $this->deletePath       = '';
         $this->customizeOptions = array();
+        $this->routeParameters  = array();
 
         $this->build();
     }
@@ -135,6 +143,7 @@ abstract class AbstractDatatableView
         $options['fields']           = $this->getFieldsOptions();
         $options['actions']          = $this->getActions();
         $options['customizeOptions'] = $this->getCustomizeOptions();
+        $options['routeParameters']  = $this->getRouteParameters();
 
         return $this->twig->render($this->getTemplate(), $options);
     }
@@ -338,7 +347,7 @@ abstract class AbstractDatatableView
     }
 
     /**
-     * hack for jms transbundle
+     * virtual translate message
      *
      * @param string $value value
      *
@@ -347,5 +356,33 @@ abstract class AbstractDatatableView
     public function trans($value)
     {
         return $value;
+    }
+
+    /**
+     * Gets the routeParameters.
+     *
+     * @return string
+     */
+    public function getRouteParameters()
+    {
+        if (!$this->routeParameters) {
+            return array();
+        }
+
+        return $this->routeParameters;
+    }
+
+    /**
+     * Sets the routeParameters.
+     *
+     * @param string $routeParameters the routeParameters
+     *
+     * @return self
+     */
+    public function addRouteParameter($name, $parameter)
+    {
+        $this->routeParameters[$name] = $parameter;
+
+        return $this;
     }
 }

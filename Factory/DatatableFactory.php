@@ -2,7 +2,7 @@
 
 namespace DutchBridge\DatatableBundle\Factory;
 
-use Twig_Environment as Twig;
+use Symfony\Bridge\Twig\TwigEngine as Twig;
 
 /**
  * Class DatatableFactory
