@@ -19,7 +19,8 @@
     {% block dutchbridge_datatable_js %}
 
         <script>
-
+            var oTable = null;
+            var anOpen = null;
             $(document).ready(function () {
 
                 var selector = "#{{ id }}";
@@ -53,75 +54,72 @@
 
                 $.extend(defaults, {
                     "aoColumns": [
-                        {% for field in fields %}
-                            {
-                                {% if field.mData != null %}
-                                    "mData": "{{ field.mData }}",
-                                {% else %}
-                                    "mData": null,
-                                {% endif %}
+                {% for field in fields %}
+                    {
+                        {% if field.mData != null %}
+                            "mData": "{{ field.mData }}",
+                        {% else %}
+                            "mData": null,
+                        {% endif %}
 
-                                {% if field.sName != '' %}
-                                    "sName": "{{ field.sName }}",
-                                {% endif %}
+                        {% if field.sName != '' %}
+                            "sName": "{{ field.sName }}",
+                        {% endif %}
 
-                                {% if field.sClass != '' %}
-                                    "sClass": "{{ field.sClass }}",
-                                {% endif %}
+                        {% if field.sClass != '' %}
+                            "sClass": "{{ field.sClass }}",
+                        {% endif %}
 
-                                {% if field.renderArray == true %}
-                                    "mRender": "[, ].{{ field.renderArrayFieldName }}",
-                                {% endif %}
+                        {% if field.renderArray == true %}
+                            "mRender": "[, ].{{ field.renderArrayFieldName }}",
+                        {% endif %}
 
-                                {% if field.mRender != null %}
-                                    "mRender": function(data, type, full) {
-                                        return {{ field.mRender }};
-                                    },
-                                {% endif %}
-
-                                {% if field.bSortable == false %}
-                                    "bSortable": false,
-                                {% else %}
-                                    "bSortable": true,
-                                {% endif %}
-
-                                {% if field.bSearchable == false %}
-                                    "bSearchable": false,
-                                {% else %}
-                                    "bSearchable": true,
-                                {% endif %}
-
-                                {% if field.sWidth != '' %}
-                                    "sWidth": "{{ field.sWidth }}"
-                                {% endif %}
+                        {% if field.mRender != null %}
+                            "mRender": function(data, type, full) {
+                                return {{ field.mRender }};
                             },
-                        {% endfor %}
+                        {% endif %}
+
+                        {% if field.bSortable == false %}
+                            "bSortable": false,
+                        {% else %}
+                            "bSortable": true,
+                        {% endif %}
+
+                        {% if field.bSearchable == false %}
+                            "bSearchable": false,
+                        {% else %}
+                            "bSearchable": true,
+                        {% endif %}
+
+                        {% if field.sWidth != '' %}
+                            "sWidth": "{{ field.sWidth }}"
+                        {% endif %}
+                    },
+                {% endfor %}
                     ]
                 });
 
-                var oTable = $(selector).dataTable(defaults);
+                oTable = $(selector).dataTable(defaults);
 
-                var anOpen = [];
+                anOpen = [];
 
-                $(selector).on("click", "td.details_control", function () {
-                    var nTr = this.parentNode;
-                    var i = $.inArray(nTr, anOpen);
 
-                    if (i === -1) {
-                        $("i", this).attr("class", "icon-minus");
-                        oTable.fnOpen(nTr, getDetails(oTable, nTr), "details");
-                        anOpen.push(nTr);
-                    }
-                    else {
-                        $("i", this).attr("class", "icon-plus");
-                        oTable.fnClose(nTr);
-                        anOpen.splice(i, 1);
-                    }
-                });
-
-                function getDetails(oTable, nTr) {
-                    return "Test";
-                }
+                  $(document).on('click', '[data-action="more"]', function(){
+                     var nTr = this.parentNode;
+                     var i = $.inArray( nTr, anOpen );  
+                      
+                     if ( i === -1 ) {
+                        $('i', this).attr( 'class', 'icon-minus');
+                        oTable.fnOpen( nTr, fnFormatDetails(oTable, nTr), 'details' );
+                        anOpen.push( nTr );
+                      }
+                      else {
+                        $('i', this).attr( 'class', 'icon-plus');
+                        oTable.fnClose( nTr );
+                        anOpen.splice( i, 1 );
+                      }
+                  });
             });
 
         </script>
