@@ -106,7 +106,7 @@
 
 
                   $(document).on('click', '[data-action="more"]', function(){
-                     var nTr = this.parentNode;
+                     var nTr = this.parentNode.parentNode;
                      var i = $.inArray( nTr, anOpen );  
                       
                      if ( i === -1 ) {
