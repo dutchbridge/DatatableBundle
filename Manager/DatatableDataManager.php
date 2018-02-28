@@ -4,7 +4,7 @@ namespace DutchBridge\DatatableBundle\Manager;
 
 use Symfony\Bridge\Doctrine\RegistryInterface;
 use Symfony\Bridge\Monolog\Logger;
-use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Serializer\Serializer;
 use DutchBridge\DatatableBundle\Datatable\DatatableData;
 
@@ -43,7 +43,7 @@ class DatatableDataManager
      * @param Serializer        $serializer A Serializer instance
      * @param Logger            $logger     A Logger instance
      */
-    public function __construct(RegistryInterface $doctrine, Request $request, Serializer $serializer, Logger $logger)
+    public function __construct(RegistryInterface $doctrine, RequestStack $request, Serializer $serializer, Logger $logger)
     {
         $this->doctrine = $doctrine;
         $this->request = $request;
@@ -63,7 +63,7 @@ class DatatableDataManager
          *
          * @var \Symfony\Component\HttpFoundation\ParameterBag $parameterBag
          */
-        $parameterBag = $this->request->query;
+        $parameterBag = $this->request->getCurrentRequest()->query;
         $params = $parameterBag->all();
 
         /**
