@@ -9,12 +9,12 @@ services:
     dutchbridge.serializer:
         class: Symfony\Component\Serializer\Serializer
         arguments:
-            - [@dutchbridge.serializer.method]
-            - [@dutchbridge.serializer.encoder.json]
+            - ['@dutchbridge.serializer.method']
+            - ['@dutchbridge.serializer.encoder.json']
 
     dutchbridge.datatable.factory:
         class: DutchBridge\DatatableBundle\Factory\DatatableFactory
-        arguments: [@templating]
+        arguments: ["@templating"]
 
     dutchbridge.datatable.twig.extension:
         class: DutchBridge\DatatableBundle\Twig\DatatableTwigExtension
@@ -24,4 +24,4 @@ services:
     dutchbridge.datatable:
         class: DutchBridge\DatatableBundle\Manager\DatatableDataManager
         scope: request
-        arguments: [@doctrine, @request, @dutchbridge.serializer, @logger]
+        arguments: ["@doctrine", "@request", "@dutchbridge.serializer", "@logger"]
