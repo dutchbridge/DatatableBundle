@@ -24,4 +24,4 @@ services:
     dutchbridge.datatable:
         class: DutchBridge\DatatableBundle\Manager\DatatableDataManager
         scope: request
-        arguments: ["@doctrine", "@request", "@dutchbridge.serializer", "@logger"]
+        arguments: ["@doctrine", "@request_stack", "@dutchbridge.serializer", "@logger"]
