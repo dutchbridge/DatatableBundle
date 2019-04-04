@@ -199,7 +199,7 @@ Before installing DatatableBundle you need to have a working installation of Sym
         /**
          * @var \DutchBridge\DatatableBundle\Factory\DatatableFactory $factory
          */
-        $factory = $this->get('sg_datatables.factory');
+        $factory = $this->get('dutchbridge.datatable.factory');
 
         /**
          * @var \DutchBridge\DatatableBundle\Datatable\AbstractDatatableView $datatableView
@@ -224,7 +224,7 @@ Before installing DatatableBundle you need to have a working installation of Sym
         /**
          * @var \DutchBridge\DatatableBundle\Datatable\DatatableData $datatable
          */
-        $datatable = $this->get('sg_datatables')->getDatatable('SgUserBundle:User');
+        $datatable = $this->get('dutchbridge.datatable.factory')->getDatatable('SgUserBundle:User');
 
         /**
          * @var \Doctrine\ORM\QueryBuilder $qb
